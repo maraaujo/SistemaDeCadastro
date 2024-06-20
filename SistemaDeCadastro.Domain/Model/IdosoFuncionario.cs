@@ -1,0 +1,14 @@
+﻿using SistemaDeCadastro.Domain.Model;
+
+
+namespace SistemaDeCadastroIdososDomain.Model
+{
+    public class IdosoFuncionario
+    {
+        public int Id { get; set; }
+        public int IdosoID { get; set; }
+        public Idoso Idosos { get; set; }
+        public int FuncionarioID { get; set; }
+        public Funcionario Funcionarios { get; set; }
+    }
+}
