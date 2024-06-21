@@ -1,13 +1,14 @@
-﻿using SistemaDeCadastro.Domain.DataTransferObject;
+﻿using SistemaDeCadastro.Data.Repository;
+using SistemaDeCadastro.Domain.DataTransferObject;
 using SistemaDeCadastro.Domain.Model;
 
 namespace SistemaDeCadastro.Data.Interface
 {
-    public interface IIdosoRepository
-    {
+    public interface IIdosoRepository : IBaseRepository<Idoso>
+    {     
         Task<PagedIdosoDTO> GetIdoso(IdosoFilterDTO filter);
         Task<Idoso> GetIdosoById(int id);
-        Task<IdosoDTO> Create(IdosoDTO idosoDTO);
+        //Task Create(Idoso idoso);
         Task Update(Idoso idoso);
         Task Delete(int idoso);
     }

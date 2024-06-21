@@ -8,10 +8,12 @@ using SistemaDeCadastro.Domain.Model;
 
 namespace SistemaDeCadastro.Data.Repository
 {
-    public class IdosoRepository : IdosoDTO, IIdosoRepository //interface
+    public class IdosoRepository : BaseRepository<Idoso>,  IIdosoRepository //interface
     {
         private readonly SitemaDeCadastroContext context;
+
         public IdosoRepository(SitemaDeCadastroContext _context)
+            : base(_context)
         {
             this.context = _context;
         }
@@ -21,13 +23,13 @@ namespace SistemaDeCadastro.Data.Repository
             //para fazer os filtros
             try
             {
-                var iRet = context.Idosos.AsQueryable(); 
+                var iRet = context.Idosos.AsQueryable();
 
                 if (!string.IsNullOrWhiteSpace(filter.Nome))
                 {
                     var lowerName = filter.Nome.ToLower();
-                     iRet = iRet.Where(c => c.Nome.ToLower().StartsWith(lowerName) || c.Nome.ToLower()
-                        .EndsWith(lowerName) || c.Nome.EndsWith(lowerName));
+                    iRet = iRet.Where(c => c.Nome.ToLower().StartsWith(lowerName) || c.Nome.ToLower()
+                       .EndsWith(lowerName) || c.Nome.EndsWith(lowerName));
                 }
                 if (!string.IsNullOrWhiteSpace(filter.Sobrenome))
                 {
@@ -35,25 +37,26 @@ namespace SistemaDeCadastro.Data.Repository
                     iRet = iRet.Where(c => c.Sobrenome.ToLower().StartsWith(lowerName) || c.Sobrenome.ToLower()
                        .EndsWith(lowerName) || c.Sobrenome.EndsWith(lowerName));
                 }
-               
+
                 //é onde armazeno o resultado da consulta
-                PagedIdosoDTO ret = new ();
+                PagedIdosoDTO ret = new();
                 ret.Page = filter.Page;
                 ret.Count = await iRet.CountAsync();
                 ret.TotalPages = ret.Count % 10 > 0 ? (ret.Count / 10) + 1 : ret.Count / 10;
 
                 //calcula o indice da pagina atual
                 int page = filter.Page - 1;
-                 
+
                 //ordena por id, decrescente. 
-                ret.Idoso = await iRet.OrderByDescending(c => c.Id).Skip(page * ret.ItensPerPage).Take(ret.ItensPerPage).Select(c=> new IdosoDTO
+                ret.Idoso = await iRet.OrderByDescending(c => c.Id).Skip(page * ret.ItensPerPage).Take(ret.ItensPerPage).Select(c => new IdosoDTO
                 {
                     Id = c.Id,
                     Nome = c.Nome,
                     Sobrenome = c.Sobrenome,
                 }).ToListAsync();
                 return ret;
-            }catch (Exception err)
+            }
+            catch (Exception err)
             {
                 throw err;
             }
@@ -61,14 +64,13 @@ namespace SistemaDeCadastro.Data.Repository
         public async Task<Idoso> GetIdosoById(int id)
         {
             return await context.Idosos.Where(c => c.Id == id).FirstOrDefaultAsync();
-          
+
         }
-        public async Task<IdosoDTO> Create(IdosoDTO idosoDTO)
-        {
-            context.Idosos.AddAsync(idosoDTO);
-            context.SaveChangesAsync();
-              return idosoDTO;
-        }
+        //public async Task Create(Idoso idoso)
+        //{
+        //    await context.Idosos.AddAsync(idoso);
+        //    await context.SaveChangesAsync();
+        //}
 
         public async Task Update(Idoso idoso)
         {
@@ -80,7 +82,7 @@ namespace SistemaDeCadastro.Data.Repository
             var ret = await context.Idosos.FindAsync(id);
             context.Idosos.Remove(ret);
             await context.SaveChangesAsync();
-          
+
         }
     }
 }

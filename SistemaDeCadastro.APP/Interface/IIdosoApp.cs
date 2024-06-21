@@ -12,7 +12,7 @@ namespace SistemaDeCadastro.APP.Interface
     {
         Task<PagedIdosoDTO> GetIdoso(IdosoFilterDTO filter);
         Task<Idoso> GetIdosoById(int id);
-        Task<IdosoDTO> Create(IdosoDTO idosoDTO);
+        Task<ApiResponseDTO> Create(IdosoDTO idosoDTO);
         Task Update(Idoso idoso);
         Task Delete(int idoso);
     }

@@ -9,8 +9,7 @@
 
         public ICollection<MedicamentoIdosoDoenca> MedicamentoIdosoDoencas { get; set; }
         public ICollection<IdosoDoenca> IdosoDoencas { get; set; }
-        public ICollection<IdosoFuncionario> Funcionarios { get; set; }
-        
+        public ICollection<IdosoFuncionario> Funcionarios { get; set; }        
 
     }
 }

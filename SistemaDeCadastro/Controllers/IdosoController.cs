@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaDeCadastro.APP.Interface;
 using SistemaDeCadastro.Domain.DataTransferObject;
 using SistemaDeCadastro.Domain.Model;
 
 namespace SistemaDeCadastro.Controllers
-{
+{    
     [ApiController]
     [Route("[controller]")]
     public class IdosoController : ControllerBase
@@ -12,7 +13,7 @@ namespace SistemaDeCadastro.Controllers
         private readonly IIdosoApp idosoApp;
         private IConfiguration config;
 
-        public IdosoController(IConfiguration _config, IIdosoApp _idosoApp )
+        public IdosoController(IConfiguration _config, IIdosoApp _idosoApp)
         {
             this.config = _config;
             this.idosoApp = _idosoApp;
@@ -26,7 +27,8 @@ namespace SistemaDeCadastro.Controllers
             {
                 ret.Data = await this.idosoApp.GetIdoso(filter);
                 ret.Success = true;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ret.Success = false;
                 ret.ErrorMessage = ex.Message;
@@ -34,10 +36,14 @@ namespace SistemaDeCadastro.Controllers
             return Ok(ret);
         }
         [HttpPost("Create")]
-        public async Task<IActionResult> Create (IdosoDTO idosoDTO)
+        public async Task<IActionResult> Create(IdosoDTO idosoDTO)
         {
-            await this.idosoApp.Create(idosoDTO);
-            return Ok(idosoDTO);
+            var response = await this.idosoApp.Create(idosoDTO);
+
+            if (response.Success == false)
+                return BadRequest(response.ErrorMessage);
+            else
+                return Ok(response);
         }
     }
 }
