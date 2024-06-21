@@ -7,7 +7,7 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
     {
         public IdosoDTO()
         {
-            
+
         }
         public IdosoDTO(Idoso idoso)
         {
@@ -18,6 +18,6 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
 
         public int Id { get; set; }
         public string? Nome { get; set; }
-        public string? Sobrenome { get; set; }        
+        public string? Sobrenome { get; set; }
     }
 }

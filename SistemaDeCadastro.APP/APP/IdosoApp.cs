@@ -10,6 +10,7 @@ namespace SistemaDeCadastro.APP
     {
         private readonly IIdosoRepository _idosoRepository;
         private readonly IFuncionarioRepository funcionarioRepository;
+        private readonly IIdosoDoencaRepository idosoDoencaRepository;
 
         public IdosoApp(IIdosoRepository idosoRepository)
         {
@@ -34,6 +35,7 @@ namespace SistemaDeCadastro.APP
                 Idoso model = new Idoso();
                 model.Nome = idosoDTO.Nome;
                 model.Sobrenome = idosoDTO.Sobrenome;
+                model.Funcionarios = new List<IdosoFuncionario> { new IdosoFuncionario { Funcionarios = new Funcionario { } } };
 
                 await this._idosoRepository.Create(model);
 
@@ -50,6 +52,17 @@ namespace SistemaDeCadastro.APP
             return response;
 
         }
+
+        public async Task GetIdososComecandoComLetraAEDoecnaComLetraP()
+        {
+            var ret = (await idosoDoencaRepository.FindBy(c => c.Idosos.Nome.StartsWith("a")
+            && c.Doencas.Nome.StartsWith("p"))).Select(c => new
+            {
+                Nome = c.Idosos.Nome,
+                Doenca = c.Doencas.Nome
+            }).ToList();
+        }
+
         public async Task Update(Idoso idoso) => await this._idosoRepository.Update(idoso);
         public async Task Delete(int idoso) => await this._idosoRepository.Delete(idoso);
 
