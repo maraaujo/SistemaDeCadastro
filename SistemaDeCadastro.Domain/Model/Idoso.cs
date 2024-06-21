@@ -1,9 +1,6 @@
-﻿using SistemaDeCadastro.Domain.Model;
-
-
-namespace SistemaDeCadastroIdososDomain.Model
+﻿namespace SistemaDeCadastro.Domain.Model
 {
-    public class Idoso
+    public class Idoso 
     {
         public int Id { get; set; }
         public string? Nome { get; set; }

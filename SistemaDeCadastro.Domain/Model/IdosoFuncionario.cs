@@ -1,7 +1,7 @@
-﻿using SistemaDeCadastro.Domain.Model;
+﻿
 
 
-namespace SistemaDeCadastroIdososDomain.Model
+namespace SistemaDeCadastro.Domain.Model
 {
     public class IdosoFuncionario
     {

@@ -12,7 +12,7 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
         public int Count { get; set; }
         public int Page { get; set; }
         public int TotalPages { get; set; }
-        public int ItensPerPage { get => 15; }
+        public int ItensPerPage { get => 10; }
 
         public List<IdosoDTO> Idoso { get; set; }
     }

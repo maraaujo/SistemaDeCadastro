@@ -1,9 +1,9 @@
-﻿using SistemaDeCadastroIdososDomain.Model;
+﻿using SistemaDeCadastro.Domain.Model;
 
 
 namespace SistemaDeCadastro.Domain.DataTransferObject
 {
-    public class IdosoDTO
+    public class IdosoDTO :Idoso
     {
         public IdosoDTO()
         {
@@ -20,5 +20,7 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
         public string? Nome { get; set; }
         public string? Sobrenome { get; set; }
         public List<Idoso> Idoso { get; set; }
+
+       
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-namespace SistemaDeCadastro.Domain.Model
+﻿namespace SistemaDeCadastro.Domain.Model
 {
     public class Funcionario
     {
@@ -11,6 +9,6 @@ namespace SistemaDeCadastro.Domain.Model
        
         public Departamento Departamento { get; set; }
         public int DepartamentoId { get; set; }
-        public ICollection<SistemaDeCadastroIdososDomain.Model.IdosoFuncionario> Idosos { get; set; }
+        public ICollection<IdosoFuncionario> Idosos { get; set; }
     }
 }

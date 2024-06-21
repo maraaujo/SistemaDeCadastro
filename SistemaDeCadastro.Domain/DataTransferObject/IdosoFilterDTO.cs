@@ -9,10 +9,9 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
     public class IdosoFilterDTO
     {
 
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
+        public int Id { get; set; }
+        public string? Nome { get; set; }
+        public string? Sobrenome { get; set; }
 
         public int Page { get; set; }
 

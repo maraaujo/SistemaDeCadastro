@@ -1,11 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaDeCadastro.Domain.Model;
-using SistemaDeCadastroIdososDomain.Model;
 
-namespace SistemaDeCadastroIdososDomain.Context
+namespace SistemaDeCadastro.Domain.Context
 {
     public class SitemaDeCadastroContext : DbContext
     {
+        public SitemaDeCadastroContext(DbContextOptions<SitemaDeCadastroContext> options)
+        : base(options)
+        {
+        }
+
         public virtual DbSet<Idoso> Idosos {  get; set; }
         public virtual DbSet<Familia> Familias { get; set; }
         public virtual DbSet<Funcionario> Funcionarios { get; set; }

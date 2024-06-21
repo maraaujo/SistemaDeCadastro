@@ -1,6 +1,4 @@
-﻿using SistemaDeCadastroIdososDomain.Model;
-
-namespace SistemaDeCadastro.Domain.Model
+﻿namespace SistemaDeCadastro.Domain.Model
 {
     public class Departamento
     {

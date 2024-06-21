@@ -18,4 +18,9 @@
     <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaDeCadastro.Data\SistemaDeCadastro.Data.csproj" />
+    <ProjectReference Include="..\SistemaDeCadastro.Domain\SistemaDeCadastro.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 ﻿
-namespace SistemaDeCadastroIdososDomain.Model
+namespace SistemaDeCadastro.Domain.Model
 {
     public class Medicamento
     {
