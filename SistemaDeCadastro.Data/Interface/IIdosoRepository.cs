@@ -7,9 +7,9 @@ namespace SistemaDeCadastro.Data.Interface
     public interface IIdosoRepository : IBaseRepository<Idoso>
     {     
         Task<PagedIdosoDTO> GetIdoso(IdosoFilterDTO filter);
-        Task<Idoso> GetIdosoById(int id);
-        //Task Create(Idoso idoso);
-        Task Update(Idoso idoso);
-        Task Delete(int idoso);
+        Task<List<Idoso>> GetIdosoByName(string nome);
+        Task<List<Idoso>> GetIdosoById(int id);
+        Task<List<Idoso>> GetIdosoByCpf(string cpf);
+        Task<List<Idoso>> GetIdosoByIdade(int idade);
     }
 }

@@ -18,10 +18,10 @@ namespace SistemaDeCadastro.APP
         }
 
         public async Task<PagedIdosoDTO> GetIdoso(IdosoFilterDTO filter) => await this._idosoRepository.GetIdoso(filter);
-        public async Task<Idoso> GetIdosoById(int id) => await this._idosoRepository.GetIdosoById(id);
+        public async Task<List<Idoso>> GetIdosoById(int id) => await this._idosoRepository.GetIdosoById(id);
         public async Task<ApiResponseDTO> Create(IdosoDTO idosoDTO)
         {
-            ApiResponseDTO response = new ApiResponseDTO();
+            ApiResponseDTO response = new ();
 
             try
             {
@@ -47,7 +47,6 @@ namespace SistemaDeCadastro.APP
                 response.ErrorMessage = err.Message;
             }
 
-            await funcionarioRepository.FindBy(c => c.Id == 2);
 
             return response;
 

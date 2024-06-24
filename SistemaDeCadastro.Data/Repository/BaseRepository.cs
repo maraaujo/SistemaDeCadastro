@@ -3,35 +3,51 @@ using SistemaDeCadastro.Domain.Context;
 using SistemaDeCadastro.Domain.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SistemaDeCadastro.Data.Repository
 {
     public class BaseRepository<T> where T : class
     {
-        public SitemaDeCadastroContext context { get; set; }
+        public SitemaDeCadastroContext _context { get; set; }
+
         public BaseRepository(SitemaDeCadastroContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public async Task Create(T entity)
         {
-            await context.Set<T>().AddAsync(entity);
-
-            // await context.Idosos.AddAsync(idoso);
-            await context.SaveChangesAsync();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
-
 
         public async Task<List<T>> FindBy(Expression<Func<T, bool>> expression)
         {
-            return await context.Set<T>().Where(expression).ToListAsync();
+            return await _context.Set<T>().Where(expression).ToListAsync();
         }
 
+        public async Task<List<T>> GetAll()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<bool> Any(Expression<Func<T, bool>> predicate)
+        {
+           return await _context.Set<T>().Any(predicate);
+        }
+
+        public async Task Update(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
     }
 }

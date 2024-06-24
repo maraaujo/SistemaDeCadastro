@@ -7,17 +7,27 @@ namespace SistemaDeCadastro.Domain.DataTransferObject
     {
         public IdosoDTO()
         {
-
+            
         }
         public IdosoDTO(Idoso idoso)
         {
-            this.Id = idoso.Id;
+            
             this.Nome = idoso.Nome;
             this.Sobrenome = idoso.Sobrenome;
+            this.Cpf = idoso.Cpf;
+           
+            this.Idade = idoso.Idade;
         }
+
 
         public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Sobrenome { get; set; }
+        public int Idade { get; set; }
+        public DateTime DataDeNascimento { get; set; }
+        public string Cpf { get; set; }
+        public Doenca Doenca { get; set; }
+        public Familia Familia { get; set; }
+        public Medicamento Medicamento { get; set; }
     }
 }

@@ -46,6 +46,18 @@ namespace SistemaDeCadastro.Domain.Context
                 entity.Property(e => e.Sobrenome)
                 .HasMaxLength(45)
                 .HasColumnName("Sobrenome");
+
+                entity.Property(e => e.DataDeNascimento)
+               .HasColumnType("timestamp(0) without time zone")
+               .HasColumnName("data_nascimento");
+
+                entity.Property(e => e.Cpf)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("Cpf");
+
+                entity.Property(e => e.Idade)
+                 .HasColumnName("idade");
             });
 
             modelBuilder.Entity<Familia>(entity =>
